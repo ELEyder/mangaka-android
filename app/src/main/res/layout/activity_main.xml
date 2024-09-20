@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fondo"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="140dp"
+        android:fontFamily="sans-serif"
+        android:text="@string/app_name"
+        android:textColor="#FFFFFF"
+        android:textSize="48sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/txtUsername"
+        android:layout_width="315dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="79dp"
+        android:background="@drawable/rounded_edittext"
+        android:ems="10"
+        android:hint="@string/txtUsername"
+        android:inputType="text"
+        android:paddingStart="10dp"
+        android:textStyle="bold|italic"
+        app:layout_constraintCircleRadius="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        tools:ignore="RtlSymmetry" />
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:textSize="18sp"
+        android:layout_width="315dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Entrar sin Cuenta"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtUsername" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
