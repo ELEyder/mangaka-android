@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">Mangaka</string>
-    <string name="txtUsername">Username</string>
+    <string name="txtUsername">Username (Optional)</string>
 </resources>

@@ -4,15 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -27,8 +22,10 @@ public class MenuActivity extends AppCompatActivity {
         btnLibros = findViewById(R.id.btnLibros);
         btnComics = findViewById(R.id.btnComics);
 
-        txtTitle = findViewById(R.id.txtTitle);
-        txtTitle.setText("Bienvenido " + getIntent().getStringExtra("USERNAME"));
+        txtTitle = findViewById(R.id.txt);
+        String username = getIntent().getStringExtra("USERNAME");
+        if (username.equals("") || username == null) username = "usuario";
+        txtTitle.setText("Bienvenido " + username);
 
         btnMangas.setOnClickListener(new View.OnClickListener() {
             @Override
