@@ -128,7 +128,7 @@ Se espera que la aplicación facilite el acceso a mangas, libros y cómics, prom
 - [GSON: Documentación de Gson](https://github.com/google/gson)
 
 ### 9.2 API Externa
-- [API de Mangas: Documentación de Manga Hock]([URL de la API](https://mangahook-api.vercel.app/installation))
+- [API de Mangas: Documentación de Manga Hock](https://mangahook-api.vercel.app/installation)
 
 ## Documentación Adicional
 - **Código Fuente:** [Repositorio GitHub](https://github.com/ELEyder/mangaka.git)
