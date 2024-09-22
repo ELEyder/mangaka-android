@@ -130,7 +130,8 @@ Se espera que la aplicación facilite el acceso a mangas, libros y cómics, prom
 ### 9.2 API Externa
 - [API de Mangas: Documentación de Manga Hock](https://mangahook-api.vercel.app/installation)
 
-## Documentación Adicional
-- **Código Fuente:** [Repositorio GitHub](https://github.com/ELEyder/mangaka.git)
-- **Figma:** [Diseño de la Aplicación](https://www.figma.com/design/B9Ly4VOwqk7jeX8xZibe1u/MANGAKA-APP?node-id=26-22&t=a3HoZdilDePcN4eF-1)
+### 9.3 Código Fuente
+- [Mangaka (GitHub)](https://github.com/ELEyder/mangaka-app.git)
 
+### 9.4 9.4	Figma
+- [Mangaka (Figma)](https://www.figma.com/design/B9Ly4VOwqk7jeX8xZibe1u/MANGAKA-APP?node-id=26-22&t=a3HoZdilDePcN4eF-1)
