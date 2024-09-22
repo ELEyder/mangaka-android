@@ -28,7 +28,46 @@ public class ApiManga {
     }
 
     public void getMangaList(final VolleyCallback callback) {
-        String url = BASE_URL + "mangaList";
+        String url = BASE_URL + "mangaList?page=9";
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        callback.onSuccess(response);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        callback.onError(error);
+                    }
+                });
+
+        requestQueue.add(stringRequest);
+    }
+
+    public void getCaps(final String id, final VolleyCallback callback) {
+        String url = BASE_URL + "manga/" + id;
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        callback.onSuccess(response);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        callback.onError(error);
+                    }
+                });
+
+        requestQueue.add(stringRequest);
+    }
+    public void getCap(final String mangaId, final String capId, final VolleyCallback callback) {
+        String url = BASE_URL + "manga/" + mangaId + "/" + capId;
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {

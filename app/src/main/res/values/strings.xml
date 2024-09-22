@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">Mangaka</string>
     <string name="txtUsername">Username (Optional)</string>
+    <string name="btnPrev">Prev</string>
+    <string name="btnNext">Next</string>
 </resources>

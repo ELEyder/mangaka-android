@@ -1,5 +1,6 @@
 package com.senati.mangaka;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -56,12 +57,14 @@ public class MangasActivity extends AppCompatActivity {
 
     }
     public void addMangas(String response) {
+        Intent intent = new Intent(MangasActivity.this, CapitulosActivity.class);
         try {
             JSONObject jsonResponse = new JSONObject(response);
             JSONArray mangaList = jsonResponse.getJSONArray("mangaList");
             int mangaCount = mangaList.length();
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i < mangaCount; i++) {
 
+                String id = mangaList.getJSONObject(i).getString("id");
                 String title = mangaList.getJSONObject(i).getString("title");
                 String chapters = mangaList.getJSONObject(i).getString("chapter");
                 String genres = mangaList.getJSONObject(i).getString("view");
@@ -80,9 +83,10 @@ public class MangasActivity extends AppCompatActivity {
                 ImageView imgManga = itemView.findViewById(R.id.imgManga);
                 Picasso.get().load(url).into(imgManga);
 
-                int finalI = i;
                 itemView.setOnClickListener(v -> {
-                    Toast.makeText(MangasActivity.this, "Botón " + (finalI + 1) + " pulsado", Toast.LENGTH_SHORT).show();
+                    intent.putExtra("TITLE", title);
+                    intent.putExtra("ID", id);
+                    startActivity(intent);
                 });
 
                 linearLayout.addView(itemView);

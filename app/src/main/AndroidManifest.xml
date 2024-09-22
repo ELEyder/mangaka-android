@@ -15,6 +15,12 @@
         android:theme="@style/Theme.Mangaka"
         tools:targetApi="31">
         <activity
+            android:name=".LecturaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CapitulosActivity"
+            android:exported="false" />
+        <activity
             android:name=".ComicsActivity"
             android:exported="false" />
         <activity
