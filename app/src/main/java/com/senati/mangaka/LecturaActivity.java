@@ -1,23 +1,16 @@
 package com.senati.mangaka;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.android.volley.VolleyError;
+import com.senati.mangaka.services.ApiManga;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -45,7 +38,7 @@ public class LecturaActivity extends AppCompatActivity {
         String mangaId = getIntent().getStringExtra("MANGA-ID");
         String capId = getIntent().getStringExtra("CAP-ID");
 
-        ApiManga.getInstance(this).getCap(mangaId, capId ,new ApiManga.VolleyCallback() {
+        ApiManga.getInstance(this).getCap(capId ,new ApiManga.VolleyCallback() {
             @Override
             public void onSuccess(String response) {
                 gifCargando.setVisibility(View.GONE);
@@ -63,11 +56,16 @@ public class LecturaActivity extends AppCompatActivity {
     private void getCap(String response) {
         try {
             JSONObject jsonResponse = new JSONObject(response);
-            JSONArray capList = jsonResponse.getJSONArray("images");
-            int limit = capList.length();
+            String base = jsonResponse.getString("baseURL");
+            JSONObject chapter = jsonResponse.getJSONObject("chapter");
+            String hash = chapter.getString("hash");
+            JSONArray capsList = chapter.getJSONArray("data");
+
+            int limit = capsList.length();
 
             for (int i = 0; i < limit; i++) {
-                String url = capList.getJSONObject(i).getString("image");
+
+                String url = base + "/data/" + hash + "/" + capsList.getString(i);
                 ImageView imgTemp = new ImageView(this);
                 imgTemp.setLayoutParams(new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -75,6 +73,7 @@ public class LecturaActivity extends AppCompatActivity {
                 imgTemp.setScaleType(ImageView.ScaleType.FIT_CENTER);
                 Picasso.get().load(url).into(imgTemp);
                 linearLayout.addView(imgTemp);
+
             }
         } catch (JSONException e) {
             e.printStackTrace();

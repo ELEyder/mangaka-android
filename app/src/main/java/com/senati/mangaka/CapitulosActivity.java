@@ -4,16 +4,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.Constraints;
 
 import com.android.volley.VolleyError;
+import com.senati.mangaka.services.ApiManga;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -80,15 +79,19 @@ public class CapitulosActivity extends AppCompatActivity {
     public void getCaps(String response) {
         Intent intent = new Intent(CapitulosActivity.this, LecturaActivity.class);
         try {
+
             JSONObject jsonResponse = new JSONObject(response);
-            JSONArray capList = jsonResponse.getJSONArray("chapterList");
+            JSONArray capList = jsonResponse.getJSONArray("data");
+
             int limit = capList.length();
             for (int i = 0; i < limit; i++) {
 
+                JSONObject attributes = capList.getJSONObject(i).getJSONObject("attributes");
+
                 String id = capList.getJSONObject(i).getString("id");
-                String title = capList.getJSONObject(i).getString("name");
-                String view = capList.getJSONObject(i).getString("view");
-                String createdAt = capList.getJSONObject(i).getString("createdAt");
+                String title = attributes.optString("title", "Sin capítulo");
+                String volume = attributes.optString("volume", "Sin Volumen");
+                String chapter = attributes.optString("chapter", "Sin Capítulo");
 
                 View itemView = LayoutInflater.from(CapitulosActivity.this).inflate(R.layout.button_cap, linearLayout, false);
 
@@ -96,14 +99,13 @@ public class CapitulosActivity extends AppCompatActivity {
                 txtTitle.setText(title);
 
                 TextView txtChapters = itemView.findViewById(R.id.txtChapters);
-                txtChapters.setText("Vistas: " + view);
+                txtChapters.setText("Volumen: " + volume);
 
                 TextView txtGenres = itemView.findViewById(R.id.txtGenres);
-                txtGenres.setText("Subido: " + createdAt);
+                txtGenres.setText("Capítulo: " + chapter);
 
                 itemView.setOnClickListener(v -> {
                     intent.putExtra("CAP-ID", id);
-                    intent.putExtra("MANGA-ID", mangaId);
                     intent.putExtra("TITLE", title);
                     startActivity(intent);
                 });

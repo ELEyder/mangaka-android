@@ -1,4 +1,4 @@
-package com.senati.mangaka;
+package com.senati.mangaka.services;
 
 import android.content.Context;
 
@@ -9,26 +9,24 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import java.util.ArrayList;
-
-public class ApiManga {
-    private static final String BASE_URL = "https://9lg836pc-3000.brs.devtunnels.ms/api/";
+public class ApiPirateManga {
+    private static final String BASE_URL = "https://api.mangadex.org/";
     private static RequestQueue requestQueue;
-    private static ApiManga instance;
+    private static ApiPirateManga instance;
 
-    private ApiManga(Context context) {
+    private ApiPirateManga(Context context) {
         requestQueue = Volley.newRequestQueue(context.getApplicationContext());
     }
 
-    public static synchronized ApiManga getInstance(Context context) {
+    public static synchronized ApiPirateManga getInstance(Context context) {
         if (instance == null) {
-            instance = new ApiManga(context);
+            instance = new ApiPirateManga(context);
         }
         return instance;
     }
 
     public void getMangaList(final VolleyCallback callback) {
-        String url = BASE_URL + "mangaList?page=9";
+        String url = BASE_URL + "manga";
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
