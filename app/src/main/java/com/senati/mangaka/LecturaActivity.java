@@ -104,7 +104,6 @@ public class LecturaActivity extends AppCompatActivity {
                     String url = matcher.group(1);
                     ImageView imgTemp = new ImageView(this);
 
-                    // Agregar imagen
                     imgTemp.setLayoutParams(new LinearLayout.LayoutParams(
                             LinearLayout.LayoutParams.WRAP_CONTENT,
                             LinearLayout.LayoutParams.WRAP_CONTENT));
