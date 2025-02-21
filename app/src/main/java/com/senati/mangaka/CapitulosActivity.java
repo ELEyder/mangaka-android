@@ -12,7 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.android.volley.VolleyError;
-import com.senati.mangaka.services.ApiManga;
+import com.senati.mangaka.data.ApiMangaDex;
+import com.senati.mangaka.data.VolleyCallback;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -61,7 +62,7 @@ public class CapitulosActivity extends AppCompatActivity {
                 for (View viewCap : views) linearLayout.addView(viewCap);
             }
         });
-        ApiManga.getInstance(this).getCaps(mangaId ,new ApiManga.VolleyCallback() {
+        ApiMangaDex.getInstance(this).getCaps(mangaId ,new VolleyCallback() {
             @Override
             public void onSuccess(String response) {
                 gifCargando.setVisibility(View.GONE);

@@ -1,10 +1,9 @@
-package com.senati.mangaka;
+package com.senati.mangaka.ui.mangas;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -12,8 +11,10 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.VolleyError;
-import com.senati.mangaka.services.ApiManga;
-import com.squareup.picasso.Picasso;
+import com.senati.mangaka.CapitulosActivity;
+import com.senati.mangaka.R;
+import com.senati.mangaka.data.ApiMangaDex;
+import com.senati.mangaka.data.VolleyCallback;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,7 +35,7 @@ public class MangasActivity extends AppCompatActivity {
         gifCargando.setImageResource(R.drawable.waiting);
         gifCargando.setVisibility(View.VISIBLE);
 
-        ApiManga.getInstance(this).getMangaList(new ApiManga.VolleyCallback() {
+        ApiMangaDex.getInstance(this).getMangaList(new VolleyCallback() {
             @Override
             public void onSuccess(String response) {
                 gifCargando.setVisibility(View.GONE);
