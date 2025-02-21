@@ -35,7 +35,7 @@ public class LecturaActivity extends AppCompatActivity {
         gifCargando.setImageResource(R.drawable.waiting);
         gifCargando.setVisibility(View.VISIBLE);
         linearLayout = findViewById(R.id.linearLayout);
-        String mangaId = getIntent().getStringExtra("MANGA-ID");
+
         String capId = getIntent().getStringExtra("CAP-ID");
 
         ApiManga.getInstance(this).getCap(capId ,new ApiManga.VolleyCallback() {
@@ -47,7 +47,15 @@ public class LecturaActivity extends AppCompatActivity {
 
             @Override
             public void onError(VolleyError error) {
-                Toast.makeText(LecturaActivity.this, error.toString(), Toast.LENGTH_LONG).show();
+                String errorMessage = "Error: " + error.toString();
+                if (error.networkResponse != null) {
+                    errorMessage += "\nCódigo de estado: " + error.networkResponse.statusCode;
+                    if (error.networkResponse.data != null) {
+                        errorMessage += "\nRespuesta: " + new String(error.networkResponse.data);
+                    }
+                }
+                Toast.makeText(LecturaActivity.this, errorMessage, Toast.LENGTH_LONG).show();
+                error.printStackTrace();
             }
         });
 
@@ -56,7 +64,7 @@ public class LecturaActivity extends AppCompatActivity {
     private void getCap(String response) {
         try {
             JSONObject jsonResponse = new JSONObject(response);
-            String base = jsonResponse.getString("baseURL");
+            String base = jsonResponse.getString("baseUrl");
             JSONObject chapter = jsonResponse.getJSONObject("chapter");
             String hash = chapter.getString("hash");
             JSONArray capsList = chapter.getJSONArray("data");
@@ -77,6 +85,7 @@ public class LecturaActivity extends AppCompatActivity {
             }
         } catch (JSONException e) {
             e.printStackTrace();
+            Toast.makeText(this, "Error al procesar los datos del capítulo", Toast.LENGTH_LONG).show();
         }
     }
 }

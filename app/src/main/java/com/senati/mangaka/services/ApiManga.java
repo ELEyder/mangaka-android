@@ -26,7 +26,7 @@ public class ApiManga {
     }
 
     public void getMangaList(final VolleyCallback callback) {
-        String url = BASE_URL + "manga";
+        String url = BASE_URL + "manga?title=One P";
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
@@ -65,7 +65,7 @@ public class ApiManga {
         requestQueue.add(stringRequest);
     }
     public void getCap(final String capId, final VolleyCallback callback) {
-        String url = BASE_URL + "manga/at-home/server/" + capId;
+        String url = BASE_URL + "at-home/server/" + capId;
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {

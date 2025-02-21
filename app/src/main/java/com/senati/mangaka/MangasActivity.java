@@ -58,7 +58,7 @@ public class MangasActivity extends AppCompatActivity {
                 JSONObject attributes = mangaList.getJSONObject(i).getJSONObject("attributes");
                 String id = mangaList.getJSONObject(i).getString("id");
                 String title = attributes.getJSONObject("title").getString("en");
-                String chapters = attributes.getString("lastChapter");
+                String chapters = attributes.optString("lastChapter", "No registrado");
                 String genres = attributes.getJSONArray("tags").getJSONObject(0).getJSONObject("attributes").getJSONObject("name").getString("en");
                 View itemView = LayoutInflater.from(MangasActivity.this).inflate(R.layout.button_manga, linearLayout, false);
 
