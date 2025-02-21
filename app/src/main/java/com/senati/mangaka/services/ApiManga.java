@@ -26,7 +26,7 @@ public class ApiManga {
     }
 
     public void getMangaList(final VolleyCallback callback) {
-        String url = BASE_URL + "manga?title=One P";
+        String url = BASE_URL + "manga?title=One P&availableTranslatedLanguage[]=es";
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
@@ -46,7 +46,7 @@ public class ApiManga {
     }
 
     public void getCaps(final String id, final VolleyCallback callback) {
-        String url = BASE_URL + "manga/" + id + "/feed?includeFuturePublishAt=0";
+        String url = BASE_URL + "manga/" + id + "/feed?translatedLanguage[]=es&order[chapter]=desc";
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
